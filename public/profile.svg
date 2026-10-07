@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" width="640" height="560" role="img" aria-label="Profile placeholder for Prasanta Kumar Khatei">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B1220"/>
+      <stop offset="55%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#0A0A0A"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00D4FF"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.4" r="0.65">
+      <stop offset="0%" stop-color="#00D4FF" stop-opacity="0.38"/>
+      <stop offset="100%" stop-color="#00D4FF" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="640" height="560" fill="url(#bg)"/>
+  <rect width="640" height="560" fill="url(#grid)"/>
+  <circle cx="320" cy="250" r="280" fill="url(#glow)"/>
+
+  <circle cx="320" cy="272" r="150" fill="none" stroke="url(#accent)" stroke-width="3" opacity="0.85"/>
+  <circle cx="320" cy="272" r="196" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+
+  <circle cx="320" cy="226" r="58" fill="url(#accent)"/>
+  <path d="M320 306c-66 0-119 43-134 101-5 19 9 36 29 36h210c20 0 34-17 29-36-15-58-68-101-134-101z" fill="url(#accent)"/>
+
+  <g opacity="0.55">
+    <rect x="64" y="72" width="118" height="10" rx="5" fill="rgba(0,212,255,0.65)"/>
+    <rect x="64" y="96" width="76" height="10" rx="5" fill="rgba(255,255,255,0.20)"/>
+    <rect x="462" y="470" width="118" height="10" rx="5" fill="rgba(124,58,237,0.75)"/>
+    <rect x="504" y="446" width="76" height="10" rx="5" fill="rgba(255,255,255,0.20)"/>
+  </g>
+</svg>

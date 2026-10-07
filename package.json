@@ -1,0 +1,36 @@
+{
+  "name": "prasanta-kumar-khatei-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Premium single-page portfolio for Prasanta Kumar Khatei - Senior AEM Developer & Frontend Engineer",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "preview": "node scripts/preview-server.mjs",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^14.0.0",
+    "lucide-react": "^1.52.0",
+    "next": "15.5.27",
+    "next-themes": "^0.4.6",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "tailwind-merge": "^3.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "axe-core": "^4.10.3",
+    "eslint": "^9.39.0",
+    "eslint-config-next": "15.5.27",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "ws": "^8.22.0"
+  }
+}

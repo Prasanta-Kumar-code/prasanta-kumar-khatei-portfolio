@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+next-env.d.ts
+*.tsbuildinfo
+.DS_Store
+.env*.local
+.vercel
+# Audit artifacts (generated, not source)
+/tmp/
+/tmp/audit-result.json
+/tmp/audit-shot.png
+lh-mobile.log
+cdp-probe.mjs

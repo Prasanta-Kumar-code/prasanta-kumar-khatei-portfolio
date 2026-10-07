@@ -1,0 +1,259 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------------------------------------------------
+   Light theme (default cascade) — hand-tuned, not an inversion of dark.
+   Accent rules: #00D4FF fails AA on white, so light primary is #0B6074
+   (4.5:1 must hold even over the translucent glass navbar).
+--------------------------------------------------------------------------- */
+:root {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --surface: #f7f8fa;
+  --surface-raised: #ffffff;
+  --muted: #f1f2f4;
+  --muted-foreground: #4b5563;
+  --subtle-foreground: #6b7280;
+  --border: rgb(10 10 10 / 0.1);
+  --border-strong: rgb(10 10 10 / 0.18);
+  --primary: #0b6074;
+  --primary-foreground: #ffffff;
+  --secondary: #6d28d9;
+  --secondary-foreground: #ffffff;
+  --glow-cyan: rgb(11 96 116 / 0.2);
+  --glow-violet: rgb(109 40 217 / 0.14);
+  --ring: #0b6074;
+  --card: rgb(255 255 255 / 0.75);
+  --card-border: rgb(10 10 10 / 0.08);
+  --success: #15803d;
+  --danger: #b91c1c;
+  --focus-ring: #0b6074;
+  color-scheme: light;
+}
+
+/* Dark theme — the default experience. Violet stays decorative (≈3.6:1 as
+   text on #0A0A0A), so it never carries copy; only borders/glows/gradients. */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --surface: #111827;
+  --surface-raised: #141b2b;
+  --muted: #161d2e;
+  --muted-foreground: #9ca3af;
+  --subtle-foreground: #7b8494;
+  --border: rgb(255 255 255 / 0.08);
+  --border-strong: rgb(255 255 255 / 0.16);
+  --primary: #00d4ff;
+  --primary-foreground: #041417;
+  --secondary: #7c3aed;
+  --secondary-foreground: #ffffff;
+  --glow-cyan: rgb(0 212 255 / 0.16);
+  --glow-violet: rgb(124 58 237 / 0.18);
+  --ring: #00d4ff;
+  --card: rgb(255 255 255 / 0.03);
+  --card-border: rgb(255 255 255 / 0.08);
+  --success: #4ade80;
+  --danger: #f87171;
+  --focus-ring: #00d4ff;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-glow-cyan: var(--glow-cyan);
+  --color-glow-violet: var(--glow-violet);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme {
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float 11s ease-in-out infinite;
+  --animate-aurora: aurora 18s ease-in-out infinite;
+  --animate-pulse-soft: pulse-soft 3.2s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.6s linear infinite;
+  --animate-spin-slow: spin 14s linear infinite;
+  --animate-hero-rise: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes float {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(0, -14px, 0); }
+  }
+  @keyframes aurora {
+    0%, 100% { transform: translate3d(-6%, -4%, 0) scale(1); }
+    33% { transform: translate3d(8%, 6%, 0) scale(1.12); }
+    66% { transform: translate3d(-4%, 8%, 0) scale(1.05); }
+  }
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.55; transform: scale(0.86); }
+  }
+  @keyframes shimmer {
+    from { background-position: -200% 0; }
+    to { background-position: 200% 0; }
+  }
+  @keyframes hero-rise {
+    from { opacity: 0; transform: translate3d(0, 24px, 0); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Sticky navbar clearance so focused targets are never hidden behind it. */
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Visible, high-contrast focus for the primary CTA and interactive chrome. */
+  .focus-ring:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-delay: 0s !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Hero entrance: CSS, not JS - paints before hydration (LCP critical). */
+  .hero-rise {
+    animation: var(--animate-hero-rise);
+  }
+
+  .glass {
+    background: var(--card);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid var(--card-border);
+  }
+
+  .glass-strong {
+    background: color-mix(in srgb, var(--surface) 82%, transparent);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid var(--border);
+  }
+
+  /* Gradient hairline border without a raster asset. */
+  .gradient-border {
+    position: relative;
+    background-clip: padding-box;
+    border: 1px solid transparent;
+  }
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      140deg,
+      color-mix(in srgb, var(--primary) 55%, transparent),
+      transparent 35%,
+      transparent 65%,
+      color-mix(in srgb, var(--secondary) 55%, transparent)
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .text-gradient {
+    background: linear-gradient(
+      100deg,
+      var(--foreground) 0%,
+      var(--foreground) 42%,
+      var(--primary) 78%,
+      var(--secondary) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .eyebrow {
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .neon-cyan {
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 35%, transparent),
+      0 10px 40px -12px var(--glow-cyan);
+  }
+
+  .neon-violet {
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--secondary) 35%, transparent),
+      0 10px 40px -12px var(--glow-violet);
+  }
+
+  .grid-lines {
+    background-image:
+      linear-gradient(to right, var(--border) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
