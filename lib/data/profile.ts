@@ -27,8 +27,9 @@ export const profile = {
     "Transform complex business requirements into elegant, high-performing digital experiences.",
   about:
     "I am an Adobe Certified AEM Developer passionate about creating enterprise-grade digital experiences that balance performance, scalability, and usability. My experience spans Adobe Experience Manager, React development, analytics integrations, and modern frontend engineering practices. I enjoy solving complex technical challenges and continuously exploring AI-powered development workflows to improve productivity and deliver business value.",
-  email: "prasanta.khatei@example.com",
-  linkedin: "https://www.linkedin.com/in/prasanta-khatei",
+  email: "prasantkumarkhatei9@gmail.com",
+  phone: "+91 7682976781",
+  linkedin: "https://www.linkedin.com/in/prasanta-kumar-khatei-b03b66220/",
   github: "https://github.com/Prasanta-Kumar-code",
   siteUrl,
   resumeHref: "/resume/Prasanta_Kumar_Khatei_Resume.pdf",
@@ -39,9 +40,13 @@ export const profile = {
     "Expertise in AEM 6.5",
     "React SPA Editor implementation experience",
     "Adobe Analytics integration experience",
+    "Full-stack Java development with Spring Boot",
+    "Data-driven development with SQL",
+    "Automation scripting with Shell",
     "Frontend development with React",
     "Python automation enthusiast",
     "Passionate about AI-powered development workflows",
+    "Tooling: GitLab CI, Jira, Confluence",
   ],
 } as const;
 

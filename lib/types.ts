@@ -40,6 +40,8 @@ export interface Certification {
   readonly name: string;
   readonly status: string;
   readonly badge: string;
+  /** Optional verification link for the credential (e.g. Adobe credential portal). */
+  readonly credential?: string;
 }
 
 export type FormStatus = "idle" | "submitting" | "success" | "error";

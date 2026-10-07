@@ -14,7 +14,7 @@ export const skillGroups: readonly SkillGroup[] = [
   {
     id: "backend",
     title: "Backend",
-    skills: ["Java", "REST APIs"],
+    skills: ["Java", "Spring Boot", "REST APIs", "SQL"],
   },
   {
     id: "analytics",
@@ -24,7 +24,7 @@ export const skillGroups: readonly SkillGroup[] = [
   {
     id: "tools",
     title: "Tools",
-    skills: ["Git", "GitHub", "VS Code", "IntelliJ", "Maven"],
+    skills: ["Git", "GitHub", "GitLab CI", "Jira", "Confluence", "Shell Script"],
   },
   {
     id: "ai-automation",
@@ -39,5 +39,12 @@ export const certifications: readonly Certification[] = [
     name: "Adobe Certified Professional — Adobe Experience Manager Sites Developer",
     status: "Verified",
     badge: "Certified Expert",
+  },
+  {
+    issuer: "Adobe",
+    name: "Adobe Certified Expert — Java Engineer (Spring Boot)",
+    status: "Verified",
+    badge: "Excelsior",
+    credential: "https://certification.adobe.com/credential/verify/fb331698-ac7e-11f0-8ca0-42010a400fd3/linkedin",
   },
 ];

@@ -19,6 +19,7 @@ const endpoint = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? "";
 interface Errors {
   name?: string;
   email?: string;
+  phone?: string;
   message?: string;
 }
 
@@ -243,6 +244,9 @@ export function Contact() {
               >
                 <Mail aria-hidden="true" className="h-4 w-4" />
                 {profile.email}
+                {profile.phone && (
+                  <> · <a href={"tel:" + profile.phone} className="text-primary hover:underline">{profile.phone}</a></>
+                )}
               </a>
             </div>
 
@@ -281,7 +285,7 @@ export function Contact() {
             </h3>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               Available for enterprise AEM engagements, React frontend architecture, analytics
-              implementations and AI-enabled delivery workflows.
+              implementations, Spring Boot backend services and AI-enabled delivery workflows.
             </p>
 
             <dl className="mt-6 space-y-4">
@@ -301,6 +305,9 @@ export function Contact() {
                     className="focus-ring break-all rounded text-sm font-medium text-primary hover:underline"
                   >
                     {profile.email}
+                    {profile.phone && (
+                    <> · <a href={"tel:" + profile.phone} className="text-primary hover:underline">{profile.phone}</a></>
+                  )}
                   </a>
                 </dd>
               </div>
