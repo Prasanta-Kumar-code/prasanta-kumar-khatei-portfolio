@@ -1,0 +1,63 @@
+name: Daily activity commit
+
+# One commit per day, plus a rolling uptime record of the live site. The job is
+# idempotent per calendar day: re-running it after today's entry exists leaves
+# the tree clean and pushes nothing.
+on:
+  schedule:
+    # 03:17 UTC daily (~08:47 IST). Off the hour so we miss the cron rush.
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Never let an overlapping run race the same push.
+concurrency:
+  group: daily-activity-commit
+  cancel-in-progress: false
+
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Probe the live site and refresh status.json
+        run: node scripts/daily-heartbeat.mjs
+
+      - name: Commit and push
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add public/status.json
+
+          if git diff --cached --quiet; then
+            echo "status.json is already up to date for today; nothing to commit."
+            echo "committed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git commit -m "chore(activity): daily heartbeat for $(date -u +%Y-%m-%d)"
+          git push
+          echo "committed=true" >> "$GITHUB_OUTPUT"
+
+      # A push made with GITHUB_TOKEN deliberately does not trigger other
+      # workflows, so the Pages deploy is dispatched explicitly.
+      - name: Redeploy the site
+        if: steps.commit.outputs.committed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -sS -X POST \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/deploy.yml/dispatches" \
+            -d '{"ref":"main"}'

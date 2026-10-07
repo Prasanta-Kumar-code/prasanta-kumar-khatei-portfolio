@@ -8,6 +8,7 @@ import { ParticleField } from "@/components/shared/particle-field";
 import { TechBadge } from "@/components/shared/tech-badge";
 import { track } from "@/lib/analytics";
 import { profile, techBadges } from "@/lib/data/profile";
+import { withBasePath } from "@/lib/utils";
 import profileImage from "@/public/profile.svg";
 
 /**
@@ -67,7 +68,7 @@ export function Hero() {
                 <ArrowRight aria-hidden="true" className="h-4 w-4" />
               </a>
               <a
-                href={profile.resumeHref}
+                href={withBasePath(profile.resumeHref)}
                 download
                 onClick={() => track("resume_download", { source: "hero" })}
                 className="focus-ring inline-flex h-12 items-center gap-2 rounded-full border border-border-strong px-7 text-sm font-semibold text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/60 hover:text-primary"

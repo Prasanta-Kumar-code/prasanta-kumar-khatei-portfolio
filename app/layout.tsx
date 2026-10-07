@@ -6,7 +6,7 @@ import { BackToTop } from "@/components/layout/back-to-top";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { MotionProvider } from "@/components/shared/motion-provider";
-import { profile } from "@/lib/data/profile";
+import { profile, siteOrigin } from "@/lib/data/profile";
 import { allJsonLd } from "@/lib/seo";
 
 import "./globals.css";
@@ -22,7 +22,9 @@ const title = `${profile.name} — ${profile.shortRole}`;
 const description = profile.summary;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(profile.siteUrl),
+  // Origin only, with no base path: Next.js already prefixes its own routes
+  // and assets with `basePath`, so including it here double-prefixes them.
+  metadataBase: new URL(siteOrigin),
   title: {
     default: title,
     template: `%s | ${profile.name}`,
@@ -44,7 +46,8 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: profile.name }],
   creator: profile.name,
-  alternates: { canonical: "/" },
+  // Absolute for the same reason — a relative "/" would drop the base path.
+  alternates: { canonical: `${profile.siteUrl}/` },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -54,7 +57,7 @@ export const metadata: Metadata = {
     description,
     images: [
       {
-        url: "/opengraph-image",
+        url: `${profile.siteUrl}/opengraph-image`,
         width: 1200,
         height: 630,
         alt: `${profile.name} — ${profile.shortRole}`,
@@ -65,7 +68,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["/opengraph-image"],
+    images: [`${profile.siteUrl}/opengraph-image`],
   },
   robots: {
     index: true,

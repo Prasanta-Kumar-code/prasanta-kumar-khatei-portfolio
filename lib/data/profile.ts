@@ -1,5 +1,19 @@
 import type { NavLink, Stat, TechBadge } from "@/lib/types";
 
+// Canonical URL of the deployed site. GitHub Project Pages live under a
+// /<repo-name> sub-path, so the path is part of the URL. Override with
+// NEXT_PUBLIC_SITE_URL once a custom domain is attached.
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://prasanta-kumar-code.github.io/prasanta-kumar-khatei-portfolio";
+
+/**
+ * Scheme + host only, with no base path. Next.js applies the base path to its
+ * own routes and assets by itself, so a `metadataBase` that already contains it
+ * makes generated URLs (the Open Graph image, for one) double-prefixed.
+ */
+export const siteOrigin = new URL(siteUrl).origin;
+
 export const profile = {
   name: "Prasanta Kumar Khatei",
   initials: "PK",
@@ -15,8 +29,8 @@ export const profile = {
     "I am an Adobe Certified AEM Developer passionate about creating enterprise-grade digital experiences that balance performance, scalability, and usability. My experience spans Adobe Experience Manager, React development, analytics integrations, and modern frontend engineering practices. I enjoy solving complex technical challenges and continuously exploring AI-powered development workflows to improve productivity and deliver business value.",
   email: "prasanta.khatei@example.com",
   linkedin: "https://www.linkedin.com/in/prasanta-khatei",
-  github: "https://github.com/prasanta-khatei",
-  siteUrl: "https://prasanta-khatei.github.io",
+  github: "https://github.com/Prasanta-Kumar-code",
+  siteUrl,
   resumeHref: "/resume/Prasanta_Kumar_Khatei_Resume.pdf",
   highlights: [
     "Adobe Certified AEM Sites Developer Professional",
