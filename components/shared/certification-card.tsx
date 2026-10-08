@@ -31,6 +31,17 @@ export function CertificationCard({ certification }: { certification: Certificat
               <ShieldCheck aria-hidden="true" className="h-4 w-4 text-success" />
               Status: {certification.status}
             </p>
+            {certification.credential ? (
+              <a
+                href={certification.credential}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="focus-ring mt-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3.5 py-1.5 text-xs font-semibold text-primary transition-colors hover:border-primary hover:bg-primary/20"
+              >
+                <BadgeCheck aria-hidden="true" className="h-3.5 w-3.5" />
+                Verify credential
+              </a>
+            ) : null}
           </div>
         </div>
 
