@@ -1,7 +1,9 @@
+import Image from "next/image";
+
 import { MotionSection } from "@/components/shared/motion-section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { StatCard } from "@/components/shared/stat-card";
-import { profile, stats } from "@/lib/data/profile";
+import { profile, stats, profileImage1, profileImage2 } from "@/lib/data/profile";
 
 export function About() {
   return (
@@ -47,13 +49,48 @@ export function About() {
           </div>
         </MotionSection>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:content-start">
-          {stats.map((stat, index) => (
-            <MotionSection key={stat.label} delay={0.06 * index}>
-              <StatCard stat={stat} />
-            </MotionSection>
-          ))}
+        <div className="grid gap-5 sm:grid-cols-2 lg:content-start">
+          <MotionSection delay={0.06}>
+            <div className="glass gradient-border relative overflow-hidden rounded-2xl p-3">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-xl">
+                <Image
+                  src={profileImage1}
+                  alt="Portrait of Prasanta Kumar Khatei on a city street at night"
+                  fill
+                  sizes="(min-width: 1024px) 280px, 100%"
+                  className="object-cover"
+                />
+              </div>
+              <p className="relative mt-3 text-center text-xs font-medium text-muted-foreground">
+                Night street portrait
+              </p>
+            </div>
+          </MotionSection>
+          <MotionSection delay={0.09}>
+            <div className="glass gradient-border relative overflow-hidden rounded-2xl p-3">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-xl">
+                <Image
+                  src={profileImage2}
+                  alt="Portrait of Prasanta Kumar Khatei at a desk in an office"
+                  fill
+                  sizes="(min-width: 1024px) 280px, 100%"
+                  className="object-cover"
+                />
+              </div>
+              <p className="relative mt-3 text-center text-xs font-medium text-muted-foreground">
+                Office desk portrait
+              </p>
+            </div>
+          </MotionSection>
         </div>
+      </div>
+
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {stats.map((stat, index) => (
+          <MotionSection key={stat.label} delay={0.06 * index}>
+            <StatCard stat={stat} />
+          </MotionSection>
+        ))}
       </div>
     </section>
   );

@@ -1,23 +1,23 @@
 "use client";
 
-import { ArrowRight, Download, MapPin, Sparkles } from "lucide-react";
+import { ArrowLeftRight, ArrowRight, Download, MapPin, Sparkles } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 
 import { AuroraBackdrop } from "@/components/shared/aurora-bg";
 import { ParticleField } from "@/components/shared/particle-field";
 import { TechBadge } from "@/components/shared/tech-badge";
 import { track } from "@/lib/analytics";
-import { profile, techBadges } from "@/lib/data/profile";
+import { profile, profileImage1, profileImage2, techBadges } from "@/lib/data/profile";
 import { withBasePath } from "@/lib/utils";
-import profileImage from "@/public/profile.svg";
 
-/**
- * Hero entrances are CSS-driven (not framer-motion) so the headline paints on
- * first render instead of waiting for hydration - that is the LCP element.
- */
+/** Hero entrances are CSS-driven (not framer-motion) so the headline paints on
+ * first render instead of waiting for hydration - that is the LCP element. */
 const rise = (delayMs: number) => ({ animationDelay: delayMs + "ms" });
 
 export function Hero() {
+  const [activeImage, setActiveImage] = useState<string>(profileImage1);
+
   return (
     <section id="home" aria-labelledby="home-heading" className="relative overflow-hidden">
       <AuroraBackdrop />
@@ -97,8 +97,8 @@ export function Hero() {
             <div className="glass gradient-border relative rounded-[1.75rem] p-5">
               <div className="relative overflow-hidden rounded-2xl border border-border bg-surface">
                 <Image
-                  src={profileImage}
-                  alt="Professional profile placeholder for Prasanta Kumar Khatei"
+                  src={activeImage}
+                  alt="Professional profile portrait of Prasanta Kumar Khatei"
                   width={640}
                   height={560}
                   priority
@@ -121,6 +121,35 @@ export function Hero() {
                   />
                   Available
                 </span>
+              </div>
+
+              <div className="mt-4 flex items-center justify-center gap-3">
+                <a
+                  href={profileImage1}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="focus-ring inline-flex h-10 items-center gap-1.5 rounded-full border border-border-strong px-3 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/60 hover:text-primary"
+                  aria-label="View full profile image 1"
+                >
+                  Street at night
+                </a>
+                <a
+                  href={profileImage2}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="focus-ring inline-flex h-10 items-center gap-1.5 rounded-full border border-border-strong px-3 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/60 hover:text-primary"
+                  aria-label="View full profile image 2"
+                >
+                  Office desk
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setActiveImage((current) => (current === profileImage1 ? profileImage2 : profileImage1))}
+                  className="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-strong text-muted-foreground transition-colors hover:border-primary/60 hover:text-primary"
+                  aria-label="Switch profile photo"
+                >
+                  <ArrowLeftRight aria-hidden="true" className="h-4 w-4" />
+                </button>
               </div>
 
               <dl className="mt-4 grid grid-cols-3 gap-2 border-t border-border pt-4 text-center">

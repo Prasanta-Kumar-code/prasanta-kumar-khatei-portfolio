@@ -1,4 +1,5 @@
 import type { NavLink, Stat, TechBadge } from "@/lib/types";
+import { withBasePath } from "@/lib/utils";
 
 // Canonical URL of the deployed site. GitHub Project Pages live under a
 // /<repo-name> sub-path, so the path is part of the URL. Override with
@@ -7,12 +8,17 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
   "https://prasanta-kumar-code.github.io/prasanta-kumar-khatei-portfolio";
 
-/**
- * Scheme + host only, with no base path. Next.js applies the base path to its
+/** Scheme + host only, with no base path. Next.js applies the base path to its
  * own routes and assets by itself, so a `metadataBase` that already contains it
- * makes generated URLs (the Open Graph image, for one) double-prefixed.
- */
+ * makes generated URLs (the Open Graph image, for one) double-prefixed. */
 export const siteOrigin = new URL(siteUrl).origin;
+
+// Profile photos live in `public/images/`. `withBasePath` is required here:
+// `next/image` runs unoptimized on static hosts, so the src is emitted verbatim
+// and a plain "/images/..." path would 404 under GitHub Project Pages.
+export const profileImage1 = withBasePath("/images/profile-1.jpg");
+export const profileImage2 = withBasePath("/images/profile-2.jpg");
+export const profileImagePlaceholder = withBasePath("/profile.svg");
 
 export const profile = {
   name: "Prasanta Kumar Khatei",
@@ -23,8 +29,7 @@ export const profile = {
   locationShort: "Bangalore, India",
   summary:
     "I design and develop scalable enterprise digital experiences using Adobe Experience Manager (AEM), React, Adobe Analytics, and modern web technologies. I specialize in building performant, maintainable, and user-centric solutions for global enterprises while integrating analytics, personalization, and automation to drive measurable business outcomes.",
-  mission:
-    "Transform complex business requirements into elegant, high-performing digital experiences.",
+  mission: "Transform complex business requirements into elegant, high-performing digital experiences.",
   about:
     "I am an Adobe Certified AEM Developer passionate about creating enterprise-grade digital experiences that balance performance, scalability, and usability. My experience spans Adobe Experience Manager, React development, analytics integrations, and modern frontend engineering practices. I enjoy solving complex technical challenges and continuously exploring AI-powered development workflows to improve productivity and deliver business value.",
   email: "prasantkumarkhatei9@gmail.com",
@@ -33,6 +38,10 @@ export const profile = {
   github: "https://github.com/Prasanta-Kumar-code",
   siteUrl,
   resumeHref: "/resume/Prasanta_Kumar_Khatei_Resume.pdf",
+  /** Portrait of Prasanta on a city street at night. */
+  profileImage1Url: profileImage1,
+  /** Portrait of Prasanta at a desk in an office. */
+  profileImage2Url: profileImage2,
   highlights: [
     "Adobe Certified AEM Sites Developer Professional",
     "Experience working on T-Mobile project",
