@@ -9,6 +9,7 @@ export const projects: readonly Project[] = [
     stack: ["AEM", "OSGi", "Sling", "Java"],
     impact: "Reduced content publishing effort by 45%.",
     githubUrl: "https://github.com/prasanta-khatei/aem-enterprise-content-platform",
+    liveUrl: "https://prasanta-kumar-code.github.io/mcdelivery-aem-platform/",
     caseStudyUrl: "#contact",
     gradient: ["#00d4ff", "#7c3aed"],
     glyph: "◆",

@@ -100,6 +100,19 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             GitHub
             <span className="sr-only">{srSuffix + " (opens in a new tab)"}</span>
           </a>
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track("project_open", { projectId: project.id, link: "live" })}
+              className="focus-ring inline-flex items-center gap-1.5 rounded-full text-sm font-semibold text-muted-foreground transition-colors duration-300 hover:text-primary"
+            >
+              Live Demo
+              <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+              <span className="sr-only">{srSuffix + " (opens in a new tab)"}</span>
+            </a>
+          )}
           <a
             href={project.caseStudyUrl}
             onClick={() => track("project_open", { projectId: project.id, link: "case-study" })}
