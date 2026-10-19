@@ -17,6 +17,7 @@ export interface Project {
   /** Business outcome, rendered as the headline metric on the card. */
   readonly impact: string;
   readonly githubUrl: string;
+  readonly liveUrl?: string;
   readonly caseStudyUrl: string;
   /** Two-stop gradient used to render the zero-payload SVG thumbnail. */
   readonly gradient: readonly [string, string];
