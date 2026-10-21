@@ -1,13 +1,13 @@
 {
   "site": "https://prasanta-kumar-code.github.io/prasanta-kumar-khatei-portfolio/",
-  "day": "2026-10-20",
-  "checkedAt": "2026-10-20T08:40:37.153Z",
-  "uptimeDays": 14,
+  "day": "2026-10-21",
+  "checkedAt": "2026-10-21T08:41:46.754Z",
+  "uptimeDays": 15,
   "successRate": 100,
   "lastCheck": {
     "ok": true,
     "status": 200,
-    "latencyMs": 198
+    "latencyMs": 205
   },
   "history": [
     {
@@ -93,6 +93,12 @@
       "ok": true,
       "status": 200,
       "latencyMs": 198
+    },
+    {
+      "day": "2026-10-21",
+      "ok": true,
+      "status": 200,
+      "latencyMs": 205
     }
   ]
 }
